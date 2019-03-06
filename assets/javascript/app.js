@@ -38,8 +38,11 @@ function displayGameGifs() {
 
                     // Giving the image tag an src attribute of a proprty pulled off the
                     // result item
-                    gameImage.attr("src", results[i].images.fixed_height.url);
-
+                    gameImage.attr("src", results[i].images.fixed_height_still.url);
+                    gameImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    gameImage.attr("data-animate", results[i].images.fixed_height.url);
+                    gameImage.attr("data-state", "still");
+                    gameImage.addClass("cool");
                     // Appending the paragraph and gameIMage we created to the "gifDiv" div we created
                     gifDiv.append(p);
                     gifDiv.append(gameImage);
@@ -85,7 +88,18 @@ $("#add-videoGame").on("click", function(event) {
 });
 
 
-
 renderButtons();
 
 $(document).on("click", ".game", displayGameGifs);
+$(document).on("click", ".cool", function() {
+    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+    var state = $(this).attr("data-state");
+
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+});
