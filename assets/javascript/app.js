@@ -32,6 +32,7 @@ function displayGameGifs() {
                     // Creating a paragraph tag with the result item's rating
                     var p = $("<p>").text("Rating: " + rating);
 
+
                     // Creating an image tag
                     var gameImage = $("<img>");
 
@@ -40,8 +41,9 @@ function displayGameGifs() {
                     gameImage.attr("src", results[i].images.fixed_height.url);
 
                     // Appending the paragraph and gameIMage we created to the "gifDiv" div we created
-                    gameImage.append(p);
+                    gifDiv.append(p);
                     gifDiv.append(gameImage);
+
 
                     // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
                     $("#videoGame-view").prepend(gifDiv);
@@ -52,17 +54,18 @@ function displayGameGifs() {
 
 function renderButtons() {
 
-    // Deletes the movies prior to adding new movies
+    // Deletes the games prior to adding new game
     // (this is necessary otherwise you will have repeat buttons)
     $("#gameGifbuttons").empty();
-    // Loops through the array of movies
+    // Loops through the array of game
     for (var i = 0; i < games.length; i++) {
 
-        // Then dynamicaly generates buttons for each movie in the array
+        // Then dynamicaly generates buttons for each game in the array
         // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
         var a = $("<button>");
         // Adds a class of game to our button
         a.addClass("game");
+
         // Added a data-attribute
         a.attr("data-name", games[i]);
         // Provided the initial button text
@@ -71,7 +74,18 @@ function renderButtons() {
         $("#gameGifbuttons").append(a);
     }
 }
-renderButtons();
-$(document).on("click", ".game", displayGameGifs);
 
-console.log()
+
+
+$("#add-videoGame").on("click", function(event) {
+    event.preventDefault();
+    var buttonText = $("#videoGame-input").val().trim();
+    games.push(buttonText);
+    renderButtons();
+});
+
+
+
+renderButtons();
+
+$(document).on("click", ".game", displayGameGifs);
