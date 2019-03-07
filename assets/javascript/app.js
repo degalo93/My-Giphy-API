@@ -32,12 +32,9 @@ function displayGameGifs() {
                     // Creating a paragraph tag with the result item's rating
                     var p = $("<p>").text("Rating: " + rating);
 
-
                     // Creating an image tag
                     var gameImage = $("<img>");
 
-                    // Giving the image tag an src attribute of a proprty pulled off the
-                    // result item
                     gameImage.attr("src", results[i].images.fixed_height_still.url);
                     gameImage.attr("data-still", results[i].images.fixed_height_still.url);
                     gameImage.attr("data-animate", results[i].images.fixed_height.url);
@@ -48,7 +45,6 @@ function displayGameGifs() {
                     gifDiv.append(gameImage);
 
 
-                    // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
                     $("#videoGame-view").prepend(gifDiv);
                 }
             }
@@ -57,18 +53,17 @@ function displayGameGifs() {
 
 function renderButtons() {
 
-    // Deletes the games prior to adding new game
-    // (this is necessary otherwise you will have repeat buttons)
+    // empty gameGifButton before to adding new search
+
     $("#gameGifbuttons").empty();
     // Loops through the array of game
     for (var i = 0; i < games.length; i++) {
 
-        // Then dynamicaly generates buttons for each game in the array
-        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+        //need to make button from the array
         var a = $("<button>");
         // Adds a class of game to our button
         a.addClass("game");
-
+        a.addClass("btn btn-dark");
         // Added a data-attribute
         a.attr("data-name", games[i]);
         // Provided the initial button text
@@ -78,11 +73,12 @@ function renderButtons() {
     }
 }
 
-
+//when you finish typing in the box it will add your input to make a button
 
 $("#add-videoGame").on("click", function(event) {
     event.preventDefault();
     var buttonText = $("#videoGame-input").val().trim();
+
     games.push(buttonText);
     renderButtons();
 });
