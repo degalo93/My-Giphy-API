@@ -41,9 +41,9 @@ function displayGameGifs() {
                     gameImage.attr("data-state", "still");
                     gameImage.addClass("cool");
                     // Appending the paragraph and gameIMage we created to the "gifDiv" div we created
-                    gifDiv.append(p);
-                    gifDiv.append(gameImage);
 
+                    gifDiv.append(gameImage);
+                    gifDiv.append(p);
 
                     $("#videoGame-view").prepend(gifDiv);
                 }
@@ -63,7 +63,7 @@ function renderButtons() {
         var a = $("<button>");
         // Adds a class of game to our button
         a.addClass("game");
-        a.addClass("btn btn-dark");
+        a.addClass("btn btn-light");
         // Added a data-attribute
         a.attr("data-name", games[i]);
         // Provided the initial button text
