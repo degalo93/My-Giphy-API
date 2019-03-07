@@ -24,7 +24,7 @@ function displayGameGifs() {
                 // Only taking action if the photo has an appropriate rating
                 if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                     // Creating a div for the gif
-                    var gifDiv = $("<div>");
+                    var gifDiv = $("<div class= 'gifs'>");
 
                     // Storing the result item's rating
                     var rating = results[i].rating;
@@ -40,6 +40,7 @@ function displayGameGifs() {
                     gameImage.attr("data-animate", results[i].images.fixed_height.url);
                     gameImage.attr("data-state", "still");
                     gameImage.addClass("cool");
+
                     // Appending the paragraph and gameIMage we created to the "gifDiv" div we created
 
                     gifDiv.append(gameImage);
